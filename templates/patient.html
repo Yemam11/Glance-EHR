@@ -1,0 +1,145 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Patient View
+{% endblock %}
+
+{% block main %}
+<div class = container>
+    <div class = card>
+        <form class = "form" action = "/update" method = "post" novalidate>
+            <h1 class = "cardtitle" >Manage your patient:</h1>
+            <input name = "patientid" type = "hidden" value = "{{patient_id}}">
+            <div class= "cardinput">
+                {% if client_info["first_name"] != None %}
+                    <input required type="text" name = "firstname" value = "{{ client_info["first_name"] }}">
+                {% else %}
+                    <input required type="text" name = "firstname" placeholder = "First Name">
+                {% endif %}
+                <label for = "firstname" class = "cardlabel" >First Name</label>
+            </div>
+
+            <div class= "cardinput">
+                {% if client_info["last_name"] != None %}
+                    <input required type="text" name = "lastname" value = "{{ client_info["last_name"] }}">
+
+                {% else %}
+                    <input required type="text" name = "lastname" placeholder = "Last Name">
+                {% endif %}
+                <label for = "lastname" class = "cardlabel" >Last Name</label>
+            </div>
+
+            <div class= "cardinput">
+                {% if client_info["dob"] != None %}
+                    <input rquired type="date" id = "dob" name = "dob" value = "{{ client_info["dob"] }}">
+
+                {% else %}
+                    <input rquired type="date" id = "dob" name = "dob" placeholder = "YYYY-MM-DD">
+                {% endif %}
+                <label for = "dob" class = "cardlabel" >Date of Birth</label>
+            </div>
+
+            <div class = "cardinput">
+                {% if client_info["address"] != None %}
+                    <input required type="text" name = "address" value = "{{ client_info["address"] }}">
+
+                {% else %}
+                    <input required type="text" name = "address" placeholder = "Address">
+                {% endif %}
+                <label for = "adrress" class = "cardlabel" >Address</label>
+            </div>
+
+            <div class = "cardinput">
+                {% if client_info["existing_conditions"] != None %}
+                    <input  type="text" name = "existingconditions" value = "{{ client_info["existing_conditions"] }}">
+                {% else %}
+                    <input  type="text" id = "existingconditions" name = "existingconditions" placeholder = "Please describe any existing conditions">
+                {% endif %}
+                <label for = "existingconditions" class = "cardlabel" >Existing Conditions</label>
+            </div>
+
+            <div class = "cardinput">
+                {% if client_info["notes"] != None %}
+                    <input id = "notes" type="text" name = "notes" value = "{{ client_info["notes"] }}">
+
+                {% else %}
+                    <input id = "notes" type="text" name = "notes" placeholder = "Notes">
+                {% endif %}
+                <label for = "notes" class = "cardlabel" >Notes</label>
+            </div>
+
+            <hr class = "pagebreak">
+
+            <label for = "medselect" class = "filelabel">Medication Portfolio Tool:</label>
+
+            <div class = "cardinput">
+                {% if client_info["medications"] != None %}
+
+                    <input name = "medselect" id = "medselect" type ="email" list="Rx" multiple value = "{{client_info["medications"]}}" placeholder = "Select Patient Medications (comma separated)"">
+                    <label for = "medselect" class = "cardlabel">Medications</label>
+                    <datalist id="Rx">
+                        {% for entry in Rx %}
+                            <option value = {{entry}}>{{entry}}</option>
+                        {% endfor %}
+                    </datalist>
+                {% else %}
+                    <input name = "medselect" id = "medselect" type ="email" formnovalidate list="Rx" multiple placeholder = "Select any medications you take (comma separated)">
+                    <label for = "medselect" class = "cardlabel">Medications</label>
+                    <datalist id="Rx">
+                        {% for entry in Rx %}
+                            <option value = {{entry}}>{{entry}}</option>
+                        {% endfor %}
+                    </datalist>
+                {% endif %}
+            </div>
+
+            {% if interaction_len > 0 %}
+            <div name = "warnings" class = "warnings">
+                <span>Warnings ⚠️</span>
+                {% for interaction in interactions %}
+                <p>{{interaction}}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class = "cardbutton">
+                <button  id = "profilebutton" type = "submit">Update Profile</button>
+                <button type = "reset" id= "resetbutton"><b>Reset</b></button>
+            </div>
+        </form>
+
+       <hr class = "pagebreak">
+
+        <form class = "form" action = "/add_record" method = "post" enctype="multipart/form-data">
+
+            <label for = "file" class = "filelabel">Add a Record:</label>
+
+            <div class = "cardinput">
+                <input required type="text" name = "title" placeholder = "Title">
+                <label for = "title" class = "cardlabel" >Title</label>
+            </div>
+
+            <div class = "cardinput">
+                <input required type="text" name = "description" placeholder = "Description">
+                <label for = "title" class = "cardlabel" >Description</label>
+            </div>
+
+            <div class = "cardinput">
+                <input type = "file" name = "file" accept=".png,.jpeg">
+            </div>
+
+            <div class = "cardbutton">
+                <input name = "patientid" type = "hidden" value = "{{patient_id}}">
+                <button  id = "recordbutton" type = "submit">Add Record</button>
+            </div>
+
+        </form>
+        <form action = "/viewrecords" method = "post" novalidate>
+            <input name = "patientid" type = "hidden" value = "{{patient_id}}">
+            <button  id = "viewbutton" type = "submit">View Records</button>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

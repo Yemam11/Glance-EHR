@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+
+{% block main %}
+<div class = "container">
+    <div class = "card">
+        <form class = "form" action = "/register" method = "post">
+
+            <h1 class = "cardtitle" >Register</h1>
+
+            <div class= "cardinput">
+                <input required type="text" name = "username" placeholder = "Username">
+                <label for = "username" class = "cardlabel" >Username</label>
+            </div>
+
+            <div class = "cardinput">
+                <input required type="password" name = "password" placeholder = "Password">
+                <label for = "password" class = "cardlabel" >Password</label>
+            </div>
+
+            <div class = "cardinput">
+                <input rquired type="password" name = "confirm_password" placeholder = "Confirm Password">
+                <label for = "confirm_password" class = "cardlabel" >Confirm Password</label>
+            </div>
+
+            <div class = "cardinput">
+                <select name = client_type id = "client_type" required>
+                    <option disabled selected value = ""></option>
+                    <option value = "patient">Patient</option>
+                    <option value = "physician">Physician</option>
+                </select>
+                <label for = "client_type" class = "cardlabel">Register As:</label>
+            </div>
+            <div class = "cardbutton">
+                <button  type = "submit">Register</button>
+                <button type = "reset" id= "resetbutton"><b>Reset</b></button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

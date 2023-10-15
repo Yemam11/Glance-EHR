@@ -1,0 +1,396 @@
+@import url('https://rsms.me/inter/inter.css');
+
+:root {
+    --shadow-radius: 4px;
+    --accentcolor: #1b77e4;
+    --shadowcolor: #282424;
+    --cardmargin: 20px;
+    --backgroundcolor: white;
+    font-family: inter;
+}
+
+button{
+    cursor: pointer;
+}
+
+*{
+    font-family: inter;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card{
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    border: solid black 3px;
+    border-radius: var(--shadow-radius);
+    box-shadow: .5rem .5rem 0 var(--shadowcolor);
+    max-width: 50%;
+    width: 50%;
+    margin: 50px;
+
+
+}
+.cardtitle{
+    color: var(--shadowcolor);
+    margin: var(--cardmargin);
+}
+.cardsubheading{
+    color: var(--accentcolor);
+    margin: 0px var(--cardmargin) var(--cardmargin) var(--cardmargin);
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+}
+
+.cardinput{
+    position: relative;
+}
+
+.cardinput > input{
+    margin: var(--cardmargin);
+    border: 3px solid var(--shadowcolor);
+    padding: 10px;
+    border-radius: 3px;
+    max-width: 70%;
+    width: 70%;
+}
+
+.cardinput > input[type = "text"]{
+    resize: vertical;
+    max-height: 100%;
+    height: auto;
+}
+
+
+.cardlabel{
+    position: absolute;
+    top:25px;
+    left: 30px;
+    padding: 5px;
+    /* margin: var(--cardmargin); */
+    text-align: center;
+    background: var(--backgroundcolor);
+    pointer-events: none;
+}
+
+.filelabel{
+    /* position: absolute; */
+    /* top:25px;
+    left: 30px; */
+    padding: 5px;
+    margin: var(--cardmargin); */
+    text-align: center;
+    background: var(--backgroundcolor);
+    color: var(--accentcolor);
+    pointer-events: none;
+}
+
+
+.cardinput > input:focus + label{
+    transform: translate(0px, -20px) scale(.8);
+    color: var(--accentcolor);
+    transition: 0.1s ease-in-out;
+}
+
+
+.cardinput > input:not(:placeholder-shown) + label{
+    transform: translate(0px, -20px) scale(.8);
+    color: var(--accentcolor);
+    transition: 0.1s ease-in-out;
+}
+
+#medselect:not(:focus)::placeholder{
+    color: white;
+}
+
+
+
+.cardinput > select{
+    margin: var(--cardmargin);
+    border: 3px solid var(--shadowcolor);
+    padding: 10px;
+    max-width: 70%;
+    width: 70%;
+}
+
+#existingconditions:not(:focus)::-webkit-input-placeholder {
+    color:white;
+  }
+
+#specialization:not(:focus)::-webkit-input-placeholder {
+    color:white;
+  }
+
+#workplace:not(:focus)::-webkit-input-placeholder {
+    color:white;
+  }
+
+#dob::-webkit-input-placeholder {
+    display: none;
+  }
+
+
+
+.cardinput > select:focus + label{
+    transform: translate(0px, -20px) scale(.8);
+    color: var(--accentcolor);
+    transition: 0.1s ease-in-out;
+}
+
+
+.cardinput > select:valid + label{
+    transform: translate(0px, -20px) scale(.8);
+    color: var(--accentcolor);
+    transition: 0.1s ease-in-out;
+}
+
+.form > label{
+    margin: var(--cardmargin);
+}
+
+.cardbutton{
+    display: flex;
+    max-width: 100%;
+    width: 100%;
+}
+.cardbutton > button{
+    margin: var(--cardmargin);
+    background-color: var(--accentcolor);
+    border: solid var(--shadowcolor);
+    padding:10px;
+    border-radius: 3px;
+    max-width: 20%;
+    width: 20%;
+    color: white;
+    cursor: pointer;
+}
+
+.managebutton{
+    margin: var(--cardmargin);
+    background-color: var(--accentcolor);
+    border: solid var(--shadowcolor);
+    padding:10px;
+    border-radius: 3px;
+    max-width: 100%;
+    width: auto;
+    color: white;
+    cursor: pointer;
+}
+
+#profilebutton{
+    max-width: 50%;
+    width: auto;
+}
+
+
+
+.centered{
+    align-items: center;
+    justify-content: center;
+}
+
+.cardbutton > input{
+    margin: var(--cardmargin);
+    background-color: var(--accentcolor);
+    border: solid var(--shadowcolor);
+    padding:10px;
+    border-radius: 3px;
+    max-width: 20%;
+    width: 20%;;
+    color: white;
+    cursor: pointer;
+}
+
+
+#resetbutton{
+    margin: var(--cardmargin);
+    background-color: white;
+    color: var(--accentcolor);
+    border: none;
+    padding:10px;
+    font-size: 1rem;
+    max-width: 20%;
+    width: 20%;;
+
+}
+
+#viewbutton{
+    margin: var(--cardmargin);
+    background-color: white;
+    color: var(--accentcolor);
+    border: none;
+    padding:10px;
+    font-size: 1rem;
+    max-width: 20%;
+    width: 20%;;
+
+}
+.portalbutton{
+    border: none;
+    background: transparent;
+    color: var(--accentcolor);
+    cursor: pointer;
+    text-align: center;
+    margin: 5vh;
+}
+
+.navcontainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 20%;
+    height: 20%;
+}
+
+.navbar{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin: 1vh;
+    max-width: 30%;
+    width: 30%;
+}
+
+.navoption{
+    padding: 1vh 2.5vh;
+    margin: 1vh;
+    border-radius: 3px;
+}
+
+.active{
+    background-color: var(--accentcolor);
+    color: white;
+}
+
+.navlogo{
+    display: flex;
+    margin: 1vh 1vh 1vh 3vh;
+    max-width: 30%;
+    width: 30%;
+}
+
+.navcenter{
+    display: flex;
+    margin: 1vh;
+    max-width: 40%;
+    width: 40%;
+}
+.optionbox > form{
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.optionbox > form:not(:has(button.active))> button:hover{
+    transition: 0.3s;
+    background: var(--accentcolor);
+    color: white;
+}
+
+.patienttable{
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 100%;
+  margin: var(--cardmargin);
+}
+
+table.patienttable{
+    border: 1px solid black;
+    border-collapse: collapse;
+    max-width: 100%;
+    margin: var(--cardmargin);
+}
+
+#patienttable{
+    max-width: 80%;
+    width: 80%;
+
+}
+
+#patienttable th{
+    max-width: 25%;
+    width: 25%;
+    padding: 15px;
+}
+
+/* #patienttable th > tr{
+    color: white;
+    border: 3px solid black;
+} */
+
+
+
+#patienttable td{
+    max-width: 25%;
+    width: 25%;
+    padding: 5px;
+    text-align: center;
+}
+
+
+.patienttable tr:nth-child(odd) {
+    background-color: rgba(27, 119, 228, 0.5);
+  }
+
+#tableheader{
+    background-color: rgba(27, 119, 228);
+}
+
+#tablecard{
+    max-width: 90%;
+    width: 90%;
+}
+
+.warnings{
+    margin: var(--cardmargin);
+    border: 3px solid var(--shadowcolor);
+    border-radius: 3px;
+    padding: 10px;
+    max-width: 70%;
+    width: 70%;
+}
+
+.warnings > span{
+    color: var(--accentcolor);
+}
+
+.pagebreak{
+    color: black;
+    width: 80%;
+    size: 1;
+    background: black;
+    margin: var(--cardmargin);
+}
+
+.record{
+    height: 200px;
+    width: 200px;
+}
+
+.recordtext{
+    margin: var(--cardmargin);
+    /* color: var(--accentcolor); */
+
+}
+
+.recordimg{
+    display: flex;
+    margin: var(--cardmargin);
+}
+
+.recordimg > img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.pgtitle{
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    View Patient
+{% endblock %}
+
+{% block main %}
+    <div class = "pgtitle">
+        <h1>Patient Records: </h1>
+    </div>
+
+    {% for record in records %}
+    <div class = "container">
+        <div class = "card">
+            <div class = "recordtext">
+                <h2><b class = "field" >Title:</b> {{record["title"]}}</h2>
+                <h4><b class = "field">Date:</b> {{record["upload_date"]}}</h4>
+                <h3><b class = "field">Description:</b> {{record["description"]}}</h3>
+            </div>
+
+            <div class = "recordimg">
+                <img src = "{{record["record"]}}">
+            </div>
+
+        </div>
+    </div>
+
+    {% endfor %}
+
+{% endblock %}

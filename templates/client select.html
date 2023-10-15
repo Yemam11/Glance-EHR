@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Client Select
+{% endblock %}
+
+
+{% block main %}
+<div class = container>
+    <div class = card>
+
+        <form class = "form centered" action="/clientselect" method="post">
+            <h1 class = "cardtitle" >Choose your portal:</h1>
+            
+            <div class = "cardbutton centered">
+                <input id = "patientbutton" type="submit" name = "client" value = "Patient Log In" >
+            </div>
+            <div class = "cardbutton centered">
+                <input  id = "physicianbutton" type="submit" name = "client" value = "Physician Log In">
+            </div>
+        </form>
+
+        <form  class = "form centered" action = "/register" method = "get">
+            <div class = "cardbutton centered" >
+                <button type = "submit">Register</button>
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
+{% endblock %}

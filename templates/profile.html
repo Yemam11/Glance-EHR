@@ -1,0 +1,188 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+
+{% block main %}
+<div class = container>
+    <div class = card>
+
+        <form class = "form" action = "/buildprofile" method = "post" novalidate>
+
+            <h1 class = "cardtitle" >Help us get to know you.</h1>
+
+            {% if session["client"] == "patient" %}
+
+            <div class= "cardinput">
+                {% if client_info["first_name"] != None %}
+                    <input required type="text" name = "firstname" value = "{{ client_info["first_name"] }}">
+
+                {% else %}
+                    <input required type="text" name = "firstname" placeholder = "First Name">
+                {% endif %}
+                <label for = "firstname" class = "cardlabel" >First Name</label>
+            </div>
+
+            <div class= "cardinput">
+                {% if client_info["last_name"] != None %}
+                    <input required type="text" name = "lastname" value = "{{ client_info["last_name"] }}">
+
+                {% else %}
+                    <input required type="text" name = "lastname" placeholder = "Last Name">
+                {% endif %}
+                <label for = "lastname" class = "cardlabel" >Last Name</label>
+            </div>
+
+            <div class= "cardinput">
+                {% if client_info["dob"] != None %}
+                    <input rquired type="date" id = "dob" name = "dob" value = "{{ client_info["dob"] }}">
+
+                {% else %}
+                    <input rquired type="date" id = "dob" name = "dob" placeholder = "YYYY-MM-DD">
+                {% endif %}
+                <label for = "dob" class = "cardlabel" >Date of Birth</label>
+            </div>
+
+            <div class = "cardinput">
+                {% if client_info["address"] != None %}
+                    <input required type="text" name = "address" value = "{{ client_info["address"] }}">
+
+                {% else %}
+                    <input required type="text" name = "address" placeholder = "Address">
+                {% endif %}
+                <label for = "adrress" class = "cardlabel" >Address</label>
+            </div>
+
+            <div class = "cardinput">
+                {% if client_info["existing_conditions"] != None %}
+                    <input  type="text" name = "existingconditions" value = "{{ client_info["existing_conditions"] }}">
+                {% else %}
+                    <input  type="text" id = "existingconditions" name = "existingconditions" placeholder = "Please describe any existing conditions">
+                {% endif %}
+                <label for = "existingconditions" class = "cardlabel" >Existing Conditions</label>
+            </div>
+            <div class = "cardinput">
+                {% if client_info["medications"] != None %}
+
+                    <input name = "medselect" id = "medselect" type ="email" list="Rx" multiple value = "{{client_info["medications"]}}" placeholder = "Select Patient Medications (comma separated)"">
+                    <label for = "medselect" class = "cardlabel">Medications</label>
+                    <datalist id="Rx">
+                        {% for entry in Rx %}
+                            <option value = {{entry}}>{{entry}}</option>
+                        {% endfor %}
+                    </datalist>
+                {% else %}
+                    <input name = "medications" id = "medselect" type ="email" formnovalidate list="Rx" multiple placeholder = "Select any medications you take (comma separated)">
+                    <label for = "medselect" class = "cardlabel">Medications</label>
+                    <datalist id="Rx">
+                        {% for entry in Rx %}
+                            <option value = {{entry}}>{{entry}}</option>
+                        {% endfor %}
+                    </datalist>
+                {% endif %}
+            </div>
+
+            <div class = "cardinput">
+
+                {% if client_info["primary_physician"] != None %}
+                    <select name = "primary_physician" id = "primary_physician">
+                        <option selected value = "{{client_info["primary_physician"]}}">{{fullname}}</option>
+
+                        {% for physician in physicians %}
+                            {% if (physician["physician_id"]) != client_info["primary_physician"] %}
+                                <option value = "physician["physician_id"]">{{physician["first_name"]}}&nbsp;{{physician["last_name"]}}</option>
+                            {% endif %}
+                        {% endfor %}
+
+                    </select>
+                {% else %}
+                    <select name = "primary_physician" id = "primary_physician">
+                        <option disabled value = ""></option>
+                        {% for physician in physicians %}
+                            <option value = "{{physician["physician_id"]}}">{{physician["first_name"]}}&nbsp;{{physician["last_name"]}}</option>
+                        {% endfor %}
+                    </select>
+                {% endif %}
+
+                <label for = "primary_physician" class = "cardlabel">Primary Physician:</label>
+            </div>
+
+            <div class = "cardbutton">
+                <button  id = "profilebutton" type = "submit">Update My Profile</button>
+                <button type = "reset" id= "resetbutton"><b>Reset</b></button>
+            </div>
+        </form>
+
+        {% elif session["client"] == "physician" %}
+
+        <div class= "cardinput">
+                {% if client_info["first_name"] != None %}
+                    <input required type="text" name = "firstname" value = "{{ client_info["first_name"] }}">
+
+                {% else %}
+                    <input required type="text" name = "firstname" placeholder = "First Name">
+                {% endif %}
+                <label for = "firstname" class = "cardlabel" >First Name</label>
+            </div>
+
+            <div class= "cardinput">
+                {% if client_info["last_name"] != None %}
+                    <input required type="text" name = "lastname" value = "{{ client_info["last_name"] }}">
+
+                {% else %}
+                    <input required type="text" name = "lastname" placeholder = "Last Name">
+                {% endif %}
+                <label for = "lastname" class = "cardlabel" >Last Name</label>
+            </div>
+
+            <div class= "cardinput">
+                {% if client_info["dob"] != None %}
+                    <input rquired type="date" id = "dob" name = "dob" value = "{{ client_info["dob"] }}">
+
+                {% else %}
+                    <input rquired type="date" id = "dob" name = "dob" placeholder = "YYYY-MM-DD">
+                {% endif %}
+                <label for = "dob" class = "cardlabel" >Date of Birth</label>
+            </div>
+
+            <div class = "cardinput">
+                {% if client_info["address"] != None %}
+                    <input required type="text" name = "address" value = "{{ client_info["address"] }}">
+
+                {% else %}
+                    <input required type="text" name = "address" placeholder = "Address">
+                {% endif %}
+                <label for = "adrress" class = "cardlabel" >Address</label>
+            </div>
+
+            <div class = "cardinput">
+                {% if client_info["specialization"] != None %}
+                    <input  type="text" name = "specialization" value = "{{ client_info["specialization"] }}">
+                {% else %}
+                    <input  type="text" id = "specialization" name = "specialization" placeholder = "Please Describe your specialization">
+                {% endif %}
+                <label for = "specialization" class = "cardlabel" >Specialization</label>
+            </div>
+
+            <div class = "cardinput">
+                {% if client_info["workplace"] != None %}
+                    <input  type="text" id = "workplace" name = "workplace" value = "{{ client_info["workplace"] }}">
+                {% else %}
+                    <input  type="text" id = "workplace" name = "workplace" placeholder = "Which healthcare institution do you work for">
+                {% endif %}
+                <label for = "workplace" class = "cardlabel" >Workplace</label>
+            </div>
+
+            <div class = "cardbutton">
+                <button  id = "profilebutton" type = "submit">Update My Profile</button>
+                <button type = "reset" id= "resetbutton"><b>Reset</b></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    {% if session["client"] == "patient" %}
+    <div class = "pgtitle">
+        <h1>Your Patient Records: </h1>
+    </div>
+
+    {% for record in records %}
+    <div class = "container">
+        <div class = "card">
+            <div class = "recordtext">
+                <h2><b class = "field" >Title:</b> {{record["title"]}}</h2>
+                <h4><b class = "field">Date:</b> {{record["upload_date"]}}</h4>
+                <h3><b class = "field">Description:</b> {{record["description"]}}</h3>
+            </div>
+
+            <div class = "recordimg">
+                <img src = "{{record["record"]}}">
+            </div>
+
+        </div>
+    </div>
+
+    {% endfor %}
+
+    {% else %}
+    <div class = container>
+        <div class = "card centered" id= "tablecard" >
+            {% if lenpatients > 0 %}
+            <h1 class = "cardtitle" >Your Patients:</h1>
+            <table class = "patienttable" id = "patienttable">
+                <tr id = "tableheader">
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Date of Birth</th>
+                    <th></th>
+                </tr>
+
+                <tb>
+                    {% for patient in patients %}
+
+                    <tr>
+                        <td>
+                            {{patient["first_name"]}}
+                        </td>
+                        <td>
+                            {{patient["last_name"]}}
+                        </td>
+                        <td>
+                            {{patient["dob"]}}
+                        </td>
+                        <td>
+                            <div class = "cardbutton centered">
+                                <form action = "/viewpatient" method = "get">
+                                    <button name = "managepatient" class = "managebutton" type = submit value = "{{patient["patient_id"]}}">Manage Patient</button>
+                                </form>
+                            </div>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+
+                </tb>
+            </table>
+            {% else %}
+            <h1 class = "cardtitle" >Your patients will appear here.</h1>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
